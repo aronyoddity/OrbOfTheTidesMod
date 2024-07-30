@@ -1,0 +1,15 @@
+{
+  "Name": "Orb of the Tides",
+  "Description": "A mystical orb that allows teleportation.",
+  "UniqueID": "dreamygloom.OrbOfTheTides",
+  "Author": "dreamygloom",
+  "Version": "1.0.0",
+  "EntryDll": "OrbOfTheTidesMod.dll",
+  "MinimumApiVersion": "3.0.0",
+ "Dependencies": [
+ {
+      "UniqueID": "dreamy.kickitspot",
+      "IsRequired": true,
+   },
+]
+}
