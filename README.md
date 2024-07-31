@@ -25,7 +25,6 @@ The **Orb of the Tides** mod for *Stardew Valley* introduces a mystical orb that
 ## Known Issues
 
 - The key for resetting the teleport location is currently not working.
-- The portal resets after an in-game day has passed.
 
 ## Changelog
 
