@@ -1,0 +1,11 @@
+{
+    "Name": "OrbOfTheTidesCP",
+    "Author": "DreamyGloom",
+ "Version": "0.0.4",
+    "Description": "SeasSideCapeExpansion",
+    "UniqueID": "dreamy.ORb",
+    "UpdateKeys": [""],
+    "ContentPackFor": {
+        "UniqueID": "Pathoschild.ContentPatcher",
+    },
+}

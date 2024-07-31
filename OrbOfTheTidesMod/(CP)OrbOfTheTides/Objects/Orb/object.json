@@ -1,0 +1,35 @@
+{
+  "Changes": [
+    {
+      "Action": "EditData",
+      "Target": "Data/Objects",
+      "Entries": {
+        "OrbOfTheTides": {
+          "Name": "OrbOfTheTides",
+          "DisplayName": "{{i18n:Orb_Translated}}",
+          "Description": "{{i18n:Orb_Description_Translated}}",
+          "Texture": "Mods/CapeStardew/Objects/Orb",
+          "SpriteIndex": 0,
+          "MenuSpriteIndex": 0,
+          "AttachmentSlots": -1,
+          "SalePrice": -1,
+          "CustomFields": {
+            "InstantUse": true,
+            "IsEfficient": true
+          },
+          "ContextTags": [
+            "color_blue",
+            "Seafaring",
+            "Antique",
+            "orb"
+          ]
+        }
+      }
+    },
+    {
+      "Action": "Load",
+      "Target": "Mods/CapeStardew/Objects/Orb",
+      "FromFile": "Objects/Orb/object.png"
+    }
+  ]
+}
