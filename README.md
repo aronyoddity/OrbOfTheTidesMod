@@ -21,7 +21,6 @@ The **Orb of the Tides** mod for *Stardew Valley* introduces a mystical orb that
 1. Spawn the **Orb of the Tides**.
 2. Press the right mouse button to set a teleportation point.
 3. Use the orb to warp to the set location.
-4. To reset the teleportation point, press the `R` key, go to bed, save, or start a new day.
 
 ## Known Issues
 
