@@ -1,6 +1,6 @@
-# Cape Stardew Mod
+# Orb Of The Tides Mod
 
-**Cape Stardew** is a mod for Stardew Valley that introduces new items, mechanics, and immersive experiences to enhance gameplay. This README provides an overview of the mod's features, installation instructions, and contribution guidelines.
+This README provides an overview of the mod's features, installation instructions, and contribution guidelines.
 
 ## Features
 
