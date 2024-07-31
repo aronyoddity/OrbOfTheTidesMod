@@ -136,7 +136,7 @@ namespace OrbOfTheTidesMod
 
        private void Display_RenderedStep(object sender, StardewModdingAPI.Events.RenderedStepEventArgs e)
 {
-    if (e.Step == StardewValley.Mods.RenderSteps.World_Background)
+    if (e.Step == StardewValley.Mods.RenderSteps.World_Sorted)
             {
                 if (teleportLocation.HasValue && portalTexture != null)
                 {
