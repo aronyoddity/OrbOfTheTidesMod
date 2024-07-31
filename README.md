@@ -2,42 +2,41 @@
 
 ## Overview
 
-The **Orb of the Tides** mod for *Stardew Valley* introduces a mystical orb that enables teleportation. This tool allows players to set and warp to specific locations in the game world with a unique visual effect.
+The **Orb of the Tides** mod adds a mystical orb to Stardew Valley that allows for convenient teleportation. This item can be used to set a teleportation point and warp the player to that location. 
+
+**Note:** The Orb of the Tides mod is an upcoming item and will be available as a treasure chest item deep within the sea cavern in the Cape Stardew mod.
 
 ## Features
 
-- **Teleportation**: Use the orb to set a teleportation point and warp to that location.
-- **Reset Functionality**: Reset the teleportation location by going to bed.
-- **Dialogue Box**: Prompt players with a dialogue box to confirm teleportation with options 'Yes' or 'No'.
-
-## Installation
-
-1. Download the latest release.
-2. Extract the contents to your `Mods` folder.
-3. Ensure you have Content Patcher installed as it is a requirement.
-
-## Usage
-
-1. Spawn the **Orb of the Tides**.
-2. Press the right mouse button to set a teleportation point.
-3. Use the orb to warp to the set location.
+- **Teleportation:** Set a teleportation point and warp to it with the orb.
+- **Transparent Orb Effect:** The orb envelops the player with a visual effect during teleportation.
+- **Portal Indicator:** A visual indicator (portal.png) shows the teleportation point in the game world.
 
 ## Known Issues
 
-- The key for resetting the teleport location is currently not working.
+- **Reset Key Not Working:** The G key for resetting the teleport location is not functioning as expected.
 
-## Changelog
+## Installation
 
-### v1.0.0
+1. Download the mod files.
+2. Place them in your Stardew Valley `Mods` folder.
+3. Start Stardew Valley and enjoy the new features!
 
-- Added teleportation functionality
-- Implemented dialogue box for teleportation confirmation.
-- Fixed minor bugs related to teleportation mechanics.
+## Usage
 
-## Contributing
+- **Set Teleport Point:** Use the orb to set a teleportation point.
+- **Teleport:** Use the orb to warp to the set teleportation point.
+- **Reset Point:** The point can be reset by pressing the G key, going to bed, saving, or starting a new day.
 
-If you have suggestions, please open an issue or submit a pull request. Contributions are welcome!
+## Credits
 
-## License
+- Mod Author: dreamygloom
+- Special thanks to the Stardew Valley modding community for feedback and support.
 
-This mod is licensed under the MIT License.
+## Contact
+
+For issues or suggestions, please open an issue on this repository.
+
+---
+
+Enjoy using the Orb of the Tides in your Stardew Valley adventures!
