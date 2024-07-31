@@ -5,8 +5,6 @@ This README provides an overview of the mod's features, installation instruction
 ## Features
 
 - **Orb of the Tides**: A mystical item that allows teleportation to a set location. Includes a unique visual effect and reset functionality.
-- **Gumi Sweet Rice and Sticky Rice Flour**: New culinary items that expand the cooking options in the game.
-- **Custom Assets**: Includes new sprites and animations to enrich the visual experience.
 
 ## Installation
 
@@ -15,7 +13,7 @@ This README provides an overview of the mod's features, installation instruction
    - SMAPI (Stardew Modding API)
 
 2. **Installation Steps**:
-   - Download the latest release from the [Releases page](https://github.com/your-repo/releases).
+   - Download the latest release from the
    - Extract the contents of the downloaded file.
    - Move the `CapeStardew` folder into your `Mods` directory in the Stardew Valley installation folder.
    - Launch Stardew Valley through SMAPI.
