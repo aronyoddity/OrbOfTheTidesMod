@@ -1,0 +1,5 @@
+/home/arony/Documents/NEWPROJECT/OrbOfTheTidesMod/OrbOfTheTidesMod/obj/Debug/net5.0/OrbOfTheTidesMod.csproj.AssemblyReference.cache
+/home/arony/Documents/NEWPROJECT/OrbOfTheTidesMod/OrbOfTheTidesMod/obj/Debug/net5.0/OrbOfTheTidesMod.GeneratedMSBuildEditorConfig.editorconfig
+/home/arony/Documents/NEWPROJECT/OrbOfTheTidesMod/OrbOfTheTidesMod/obj/Debug/net5.0/OrbOfTheTidesMod.AssemblyInfoInputs.cache
+/home/arony/Documents/NEWPROJECT/OrbOfTheTidesMod/OrbOfTheTidesMod/obj/Debug/net5.0/OrbOfTheTidesMod.AssemblyInfo.cs
+/home/arony/Documents/NEWPROJECT/OrbOfTheTidesMod/OrbOfTheTidesMod/obj/Debug/net5.0/OrbOfTheTidesMod.csproj.CoreCompileInputs.cache

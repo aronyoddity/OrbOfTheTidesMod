@@ -1,0 +1,54 @@
+{
+  "Changes": [
+
+ //Items//
+    
+    //Orb//
+    {
+        "Action": "EditData",
+      "Target": "Data/Tools",
+      "Entries": {
+        "dreamy.kickitspot_OrbOfTheTides": {
+          "ClassName": "GenericTool",
+                    "Name": "OrbOfTheTides",
+                    "DisplayName": "{{i18n:Orb_Translated}}",
+                    "Description": "{{i18n:Orb-Description_Translated}}",
+                    "Type": "Basic",
+                    "Category": 0,
+                    "Price": 300,
+                    "CanTrash": false,
+                    "CanSell": true,
+                    
+                    "Texture": "Tilesheets/Tools/Orb",
+                    "SpriteIndex": 0,
+                     "MenuSpriteIndex": 0,
+          "IsDrink": false,
+          "AttachmentSlots": -1,
+          "ModData": {
+            "TeleportDestination": "0,0"
+          },
+          "SetProperties": {
+            "InstantUse": true,
+            "IsEfficient": true
+          },
+                    "ContextTags": [
+                        "color_blue",
+                        "Seafaring",
+                        "Antique",
+			"orb"
+                    ],
+         
+                }
+            }
+        },
+        {
+            "Action": "Load",
+            "Target": "Tilesheets/Tools/Orb",
+            "FromFile": "assets/Orb/object.png"
+        },
+        
+        
+        
+        
+        ]
+        }
