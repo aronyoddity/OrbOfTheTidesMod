@@ -6,7 +6,7 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
 using System.Collections.Generic;
-using xTile.Dimensions; // Import for Location
+using xTile.Dimensions;
 
 namespace OrbOfTheTidesMod
 {
@@ -25,7 +25,8 @@ namespace OrbOfTheTidesMod
         private const float OrbBigFrameInterval = 200f; // 200ms per frame
         private bool isWarping = false; // Flag to track if warping is active
         private double warpStartTime = 0; // Time when warp starts
-        private const double WarpDisplayDuration = 7000; // 7 seconds in milliseconds
+        private const double WarpDisplayDuration = 2000; // 2 seconds in milliseconds
+        private bool isModDisabled = false; // Flag to disable the mod temporarily
 
         public override void Entry(IModHelper helper)
         {
@@ -57,6 +58,7 @@ namespace OrbOfTheTidesMod
             orbBigFrameTimer = 0f;
             isWarping = false; // Reset the warping flag at the start of the day
             warpStartTime = 0;
+            isModDisabled = false; // Reset the mod disable flag
         }
 
         private void OnDayStarted(object sender, DayStartedEventArgs e)
@@ -69,6 +71,7 @@ namespace OrbOfTheTidesMod
             orbBigFrameTimer = 0f;
             isWarping = false; // Reset the warping flag at the start of the day
             warpStartTime = 0;
+            isModDisabled = false; // Reset the mod disable flag
         }
 
         private void OnButtonPressed(object sender, ButtonPressedEventArgs e)
@@ -81,17 +84,21 @@ namespace OrbOfTheTidesMod
             if (player.CurrentItem == null || player.CurrentItem.QualifiedItemId != "(O)OrbOfTheTides")
                 return;
 
+            // Check if the player is interacting with an action tile or building
+            if (isModDisabled)
+                return;
+
             if (e.Button == SButton.MouseRight)
             {
                 if (teleportLocation.HasValue)
                 {
                     List<Response> responses = new List<Response>
                     {
-                        new Response("yes", Helper.Translation.Get("Yes_Translated")),
-                        new Response("no", Helper.Translation.Get("No_Translated"))
+                        new Response("yes", "Yes"),
+                        new Response("no", "No")
                     };
                     Game1.currentLocation.createQuestionDialogue(
-                        Helper.Translation.Get("ResetPortalQuestion_Translated"),
+                        "Do you want to reset the teleport location?",
                         responses.ToArray(),
                         OnResetPortalQuestionAnswered
                     );
@@ -108,11 +115,11 @@ namespace OrbOfTheTidesMod
                 {
                     List<Response> responses = new List<Response>
                     {
-                        new Response("yes", Helper.Translation.Get("Yes_Translated")),
-                        new Response("no", Helper.Translation.Get("No_Translated"))
+                        new Response("yes", "Yes"),
+                        new Response("no", "No")
                     };
                     Game1.currentLocation.createQuestionDialogue(
-                        Helper.Translation.Get("OrbQuestion_Translated"),
+                        "Do you want to use the Orb of the Tides?",
                         responses.ToArray(),
                         OnQuestionAnswered
                     );
@@ -127,7 +134,7 @@ namespace OrbOfTheTidesMod
                 teleportLocation = null;
                 teleportMap = null;
                 Helper.Data.WriteSaveData("teleportLocation", (TeleportLocationData)null); // Reset saved location
-                Game1.addHUDMessage(new HUDMessage(Helper.Translation.Get("ResetTeleport_Translated"), HUDMessage.newQuest_type));
+                Game1.addHUDMessage(new HUDMessage("Teleport point reset", HUDMessage.newQuest_type));
                 this.Monitor.Log("Teleport point reset", LogLevel.Info);
             }
         }
@@ -141,12 +148,12 @@ namespace OrbOfTheTidesMod
                 teleportMap = gameLocation.Name;
                 var data = new TeleportLocationData { X = location.X, Y = location.Y, Map = teleportMap };
                 Helper.Data.WriteSaveData("teleportLocation", data); // Save the location
-                Game1.addHUDMessage(new HUDMessage(Helper.Translation.Get("SetTeleport_Translated"), HUDMessage.newQuest_type));
+                Game1.addHUDMessage(new HUDMessage("Teleport location set", HUDMessage.newQuest_type));
                 this.Monitor.Log($"Teleport location set to: {teleportMap} at {teleportLocation}", LogLevel.Info);
             }
             else
             {
-                Game1.addHUDMessage(new HUDMessage(Helper.Translation.Get("TeleportNotSet_Translated"), HUDMessage.error_type));
+                Game1.addHUDMessage(new HUDMessage("Invalid teleport location", HUDMessage.error_type));
                 this.Monitor.Log("Invalid teleport location", LogLevel.Warn);
             }
         }
@@ -158,9 +165,9 @@ namespace OrbOfTheTidesMod
                 isWarping = true; // Set the warping flag to true
                 warpStartTime = Game1.currentGameTime.TotalGameTime.TotalMilliseconds; // Record the start time
                 Game1.warpFarmer(teleportMap, (int)teleportLocation.Value.X, (int)teleportLocation.Value.Y, false);
-                Game1.addHUDMessage(new HUDMessage(Helper.Translation.Get("Teleported_Translated"), HUDMessage.newQuest_type));
+                Game1.addHUDMessage(new HUDMessage("Teleported", HUDMessage.newQuest_type));
                 this.Monitor.Log($"Teleported to: {teleportMap} at {teleportLocation}", LogLevel.Info);
-                Game1.playSound("wand");
+                Game1.playSound("portalActive");
             }
         }
 
@@ -173,67 +180,73 @@ namespace OrbOfTheTidesMod
         }
 
         private void Display_RenderedStep(object sender, RenderedStepEventArgs e)
-{
-    if (e.Step == StardewValley.Mods.RenderSteps.World_Sorted)
-    {
-        if (teleportLocation.HasValue)
         {
-            // Draw the portal image
-            if (portalTexture != null)
+            if (e.Step == StardewValley.Mods.RenderSteps.World_Sorted)
             {
-                Vector2 drawPosition = teleportLocation.Value * Game1.tileSize - new Vector2(Game1.viewport.X, Game1.viewport.Y);
-                float layerDepth = drawPosition.Y / 10000f + 0.001f;
+                if (teleportLocation.HasValue)
+                {
+                    // Draw the portal image
+                    if (portalTexture != null)
+                    {
+                        Vector2 drawPosition = teleportLocation.Value * Game1.tileSize - new Vector2(Game1.viewport.X, Game1.viewport.Y);
+                        float layerDepth = drawPosition.Y / 10000f + 0.004f;
 
-                e.SpriteBatch.Draw(
-                    portalTexture,
-                    drawPosition,
-                    null,
-                    Color.White,
-                    0f,
-                    Vector2.Zero,
-                    4f,
-                    SpriteEffects.None,
-                    layerDepth
-                );
-            }
+                        e.SpriteBatch.Draw(
+                            portalTexture,
+                            drawPosition,
+                            null,
+                            Color.White,
+                            0f,
+                            Vector2.Zero,
+                            4f,
+                            SpriteEffects.None,
+                            layerDepth
+                        );
+                    }
 
-            // Inside the Display_RenderedStep method, in the OrbBig animation handling section
+                    // Draw the animated orbBigTexture if warping
+                    if (isWarping && orbBigTexture != null)
+                    {
+                        double elapsed = Game1.currentGameTime.TotalGameTime.TotalMilliseconds - warpStartTime;
+                        if (elapsed <= WarpDisplayDuration)
+                        {
+                            orbBigFrameTimer += Game1.currentGameTime.ElapsedGameTime.Milliseconds;
 
-if (isWarping && orbBigTexture != null)
-{
-    double elapsed = Game1.currentGameTime.TotalGameTime.TotalMilliseconds - warpStartTime;
-    if (elapsed <= WarpDisplayDuration)
-    {
-        orbBigFrameTimer += Game1.currentGameTime.ElapsedGameTime.Milliseconds;
+                            if (orbBigFrameTimer >= OrbBigFrameInterval)
+                            {
+                                orbBigFrameTimer -= OrbBigFrameInterval;
+                                orbBigFrame = (orbBigFrame + 1) % 5; // Assuming 5 frames in the animation
+                            }
 
-        if (orbBigFrameTimer >= OrbBigFrameInterval)
-        {
-            orbBigFrameTimer -= OrbBigFrameInterval;
-            orbBigFrame = (orbBigFrame + 1) % 5; // Assuming 5 frames in the animation
-        }
+                            int frameWidth = 64; // Frame width (64x64px)
+                            int frameHeight = 64; // Frame height (64x64px)
+                            var sourceRectangle = new Microsoft.Xna.Framework.Rectangle(frameWidth * orbBigFrame, 0, frameWidth, frameHeight);
+                            Vector2 orbBigPosition = Game1.player.Position - new Vector2(Game1.viewport.X, Game1.viewport.Y);
+                            orbBigPosition.X -= (frameWidth / 2f) * 4f; // Center the texture on the player
+                            orbBigPosition.Y -= (frameHeight / 2f) * 4f; // Center the texture on the player
 
-        int frameWidth = 64; // Frame width (64x64px)
-        int frameHeight = 64; // Frame height (64x64px)
-        Microsoft.Xna.Framework.Rectangle sourceRectangle = new Microsoft.Xna.Framework.Rectangle(frameWidth * orbBigFrame, 0, frameWidth, frameHeight);
-        Vector2 orbBigPosition = Game1.player.Position - new Vector2(Game1.viewport.X, Game1.viewport.Y);
-        orbBigPosition.X += 4f; // Offset by 4 pixels to the left
-        orbBigPosition.Y -= 2f; // Offset by 2 pixels down
+                            // Calculate fade effect
+                            float fade = 1f;
+                            if (elapsed < 500)
+                                fade = (float)(elapsed / 500); // Fade in
+                            else if (elapsed > WarpDisplayDuration - 500)
+                                fade = (float)((WarpDisplayDuration - elapsed) / 500); // Fade out
 
-        e.SpriteBatch.Draw(
-            orbBigTexture,
-            orbBigPosition,
-            sourceRectangle,
-            Color.White,
-            0f,
-            new Vector2(frameWidth / 2, frameHeight / 2),
-            4f, // Scale the sprite 4 times larger
-            SpriteEffects.None,
-            0.5f // Ensure it appears centered on the player
-        );
-    }
-}
+                            e.SpriteBatch.Draw(
+                                orbBigTexture,
+                                orbBigPosition,
+                                sourceRectangle,
+                                Color.White * fade,
+                                0f,
+                                Vector2.Zero,
+                                4f, // Scale the sprite 4 times larger
+                                SpriteEffects.None,
+                                0.9f // Ensure it appears centered on the player
+                            );
+                        }
+                    }
 
-            // Handle portal effect animation
+                  // Handle portal effect animation
             if (portalEffectTexture != null)
             {
                 portalEffectTimer += Game1.currentGameTime.ElapsedGameTime.Milliseconds;
@@ -265,18 +278,26 @@ if (isWarping && orbBigTexture != null)
     }
 }
 
-        private bool IsValidTeleportLocation(GameLocation location, Vector2 tile)
-        {
-            if (location.isTilePassable(new Location((int)tile.X * Game1.tileSize, (int)tile.Y * Game1.tileSize), Game1.viewport))
-                return true;
-            return false;
-        }
 
-        private class TeleportLocationData
+        private bool IsValidTeleportLocation(GameLocation location, Vector2 tilePosition)
         {
-            public float X { get; set; }
-            public float Y { get; set; }
-            public string Map { get; set; }
+            // Check if the tile is not blocked by terrain or other objects
+            int tileX = (int)tilePosition.X;
+            int tileY = (int)tilePosition.Y;
+            if (location.IsTileOccupiedBy(new Vector2(tileX, tileY)) || !location.isTilePassable(new Vector2(tileX, tileY)))
+            {
+                return false;
+            }
+
+            return true;
         }
+    }
+
+    // Class to hold teleport location data
+    public class TeleportLocationData
+    {
+        public float X { get; set; }
+        public float Y { get; set; }
+        public string Map { get; set; }
     }
 }
