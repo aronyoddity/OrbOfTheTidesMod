@@ -1,0 +1,18 @@
+{
+  "OrbQuestion_Translated": "Would you like to use the Orb?",
+  "Yes_Translated": "Yes",
+	"No_Translated": "No",
+	"ResetTeleport_Translated": "Teleport point reset!",
+	"SetTeleport_Translated": "Teleport location set!",
+	"TeleportNotSet_Translated": "Invalid teleport location",
+	"Teleported_Translated": "Teleported!",
+
+  "SetPortalQuestion_Translated": "Do you want to set the portal location here?",
+  "PortalNotSet_Translated": "Portal location was not set.",
+"ResetPortalQuestion_Translated": "Do you want to reset the portal location?",
+  "Yes_Translated": "Yes",
+  "No_Translated": "No",
+  "ResetTeleport_Translated": "The portal location has been reset.",
+  "PortalNotReset_Translated": "The portal location was not reset."
+
+}

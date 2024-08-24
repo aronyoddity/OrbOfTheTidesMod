@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/arony/Documents/NEWPROJECT/OrbOfTheTidesMod/OrbOfTheTidesMod/OrbOfTheTidesMod.csproj": {}
+    "/home/arony/Documents/NEWPROJECT/OrbOfTheTidesMod/OrbOfTheTidesModPuzzleItemBackup/OrbOfTheTidesMod.csproj": {}
   },
   "projects": {
-    "/home/arony/Documents/NEWPROJECT/OrbOfTheTidesMod/OrbOfTheTidesMod/OrbOfTheTidesMod.csproj": {
+    "/home/arony/Documents/NEWPROJECT/OrbOfTheTidesMod/OrbOfTheTidesModPuzzleItemBackup/OrbOfTheTidesMod.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/arony/Documents/NEWPROJECT/OrbOfTheTidesMod/OrbOfTheTidesMod/OrbOfTheTidesMod.csproj",
+        "projectUniqueName": "/home/arony/Documents/NEWPROJECT/OrbOfTheTidesMod/OrbOfTheTidesModPuzzleItemBackup/OrbOfTheTidesMod.csproj",
         "projectName": "OrbOfTheTidesMod",
-        "projectPath": "/home/arony/Documents/NEWPROJECT/OrbOfTheTidesMod/OrbOfTheTidesMod/OrbOfTheTidesMod.csproj",
+        "projectPath": "/home/arony/Documents/NEWPROJECT/OrbOfTheTidesMod/OrbOfTheTidesModPuzzleItemBackup/OrbOfTheTidesMod.csproj",
         "packagesPath": "/home/arony/.nuget/packages/",
-        "outputPath": "/home/arony/Documents/NEWPROJECT/OrbOfTheTidesMod/OrbOfTheTidesMod/obj/",
+        "outputPath": "/home/arony/Documents/NEWPROJECT/OrbOfTheTidesMod/OrbOfTheTidesModPuzzleItemBackup/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/arony/.nuget/NuGet/NuGet.Config"

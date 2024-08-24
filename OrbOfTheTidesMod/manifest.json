@@ -3,7 +3,7 @@
   "Description": "A mystical orb that allows teleportation.",
   "UniqueID": "dreamygloom.OrbOfTheTides",
   "Author": "dreamygloom",
-  "Version": "0.0.3",
+  "Version": "0.0.5",
   "EntryDll": "OrbOfTheTidesMod.dll",
   "MinimumApiVersion": "3.0.0",
  "Dependencies": [
